@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="RookPass Privacy Policy — zero-knowledge password manager. All data stays on your device.">
+<meta name="theme-color" content="#14151a">
+<meta name="color-scheme" content="dark">
+<title>Privacy — RookPass</title>
+<link rel="icon" type="image/png" href="assets/appicon.png?v=20260518c">
+<link rel="stylesheet" href="assets/style.css?v=site-shell-8">
+</head>
+<body>
+
+<nav class="subpage-nav">
+  <a class="brand" href="index.html" aria-label="RookPass home">
+    <img src="assets/appicon.png?v=20260518c" alt="" aria-hidden="true">
+    <span>RookPass</span>
+  </a>
+  <div class="landing-nav-links">
+    <a href="features.html">Features</a>
+    <a href="changelog.html">What&#x2019;s New</a>
+    <a class="active" href="privacy.html" aria-current="page">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:support@rookpass.com">Support</a>
+    <a class="nav-btn" href="https://apps.apple.com/app/id6764725913" rel="noopener">Download</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <header class="page-header">
+    <div class="label">Legal</div>
+    <h1>Privacy Policy</h1>
+    <div class="meta">Effective April 29, 2026 · Last updated April 29, 2026</div>
+  </header>
+
+  <article>
+
+  <div class="callout">
+    <strong>The short version:</strong> RookPass collects nothing about you. All your passwords stay on your device. We have zero ability to read your vault.
+  </div>
+
+  <h2>Overview</h2>
+  <p>RookPass is a password manager designed around a single principle: <strong>your data belongs to you, not us</strong>. The app stores all vault data locally on your device using AES-256-GCM encryption with Argon2id key derivation. We do not operate any servers that receive, store, or process your passwords or personal information.</p>
+
+  <h2>Data we collect</h2>
+  <p><strong>We collect nothing.</strong> RookPass has no analytics, no crash reporting service, no telemetry, and no usage tracking. Here is a complete picture of where your data lives:</p>
+
+  <table>
+    <thead>
+      <tr><th>Data</th><th>Where it's stored</th><th>Who can access it</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vault contents</td>
+        <td>Encrypted file on your device</td>
+        <td>Only you, via your master password</td>
+      </tr>
+      <tr>
+        <td>Master password</td>
+        <td>Never stored — used only to derive the vault key</td>
+        <td>Only you</td>
+      </tr>
+      <tr>
+        <td>Vault encryption key</td>
+        <td>iOS Keychain, protected by Secure Enclave</td>
+        <td>Only you</td>
+      </tr>
+      <tr>
+        <td>iCloud backup (optional)</td>
+        <td>iCloud Drive — encrypted ciphertext only</td>
+        <td>Only you (Apple cannot read it)</td>
+      </tr>
+      <tr>
+        <td>PIN unlock</td>
+        <td>Derived key in iOS Keychain</td>
+        <td>Only you</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Encryption</h2>
+  <p>All vault data is encrypted on-device before being written to storage:</p>
+  <ul>
+    <li><strong>Algorithm:</strong> AES-256-GCM (authenticated encryption with integrity verification).</li>
+    <li><strong>Key derivation:</strong> Argon2id (t=3, m=64 MiB, p=2) with a random per-vault salt — exceeds OWASP 2023 minimum parameters.</li>
+    <li><strong>Nonce:</strong> A unique random nonce per encryption operation, ensuring no two ciphertexts are alike.</li>
+    <li><strong>Biometric key storage:</strong> iOS Secure Enclave via the Keychain, protected by your device's biometric hardware.</li>
+  </ul>
+  <p>Your master password is cleared from memory immediately after the vault key is derived. It is never written to disk, logged, or transmitted.</p>
+
+  <h2>iCloud sync</h2>
+  <p>iCloud sync is <strong>off by default</strong>. If you enable it in Settings, only the encrypted vault file (ciphertext) is uploaded to your personal iCloud Drive. The master password and encryption keys are never uploaded. Apple receives only an opaque blob it cannot decrypt.</p>
+
+  <h2>Third-party services</h2>
+  <p>RookPass does not use any third-party SDKs, analytics platforms, advertising networks, or crash reporting services. The only network requests the app can make are to iCloud (when sync is enabled, via Apple's CloudKit APIs) and to <a href="https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange">Have I Been Pwned's password API</a> (k-anonymity model — only the first 5 characters of a SHA-1 hash are sent, never the password itself).</p>
+
+  <h2>Children</h2>
+  <p>RookPass does not knowingly collect information from anyone, including children under 13. Because we collect no data at all, the app is safe for use by anyone.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If we make material changes to this policy, we will update the effective date above and post the updated version here. Any substantive change will also be noted on the <a href="changelog.html">What&rsquo;s New</a> page.</p>
+
+  <h2>Contact</h2>
+  <p>If you have questions about this policy, email <a href="mailto:privacy@rookpass.com">privacy@rookpass.com</a>.</p>
+
+  </article>
+
+</div>
+
+<footer class="landing-foot">
+  <span>© 2026 RookPass</span>
+  <nav class="links" aria-label="Footer">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:support@rookpass.com">Support</a>
+  </nav>
+</footer>
+
+</body>
+</html>

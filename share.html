@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Rook Send — view a securely shared credential from RookPass.">
+<meta name="theme-color" content="#14151a">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://rook-relay.rookapp.workers.dev; img-src 'self' data:; font-src 'self';">
+<title>Rook Send — RookPass</title>
+<style>
+/* ── Design tokens (matches RookPass website palette) ─────────────────── */
+:root {
+  --bg:          #14151a;
+  --bg-2:        #1a1c22;
+  --card:        #1c1e25;
+  --card-2:      #23262e;
+  --border:      rgba(255,255,255,0.08);
+  --text:        #f3f4f8;
+  --text-muted:  #b9bcc6;
+  --text-faint:  #8a8d97;
+  --accent:      #7c8bff;
+  --accent-2:    #6173ff;
+  --green:       #30d158;
+  --orange:      #ff9f0a;
+  --red:         #ff453a;
+  --shell-max:   560px;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(960px 420px at 50% -40px, rgba(124,139,255,0.18), transparent 60%),
+    linear-gradient(180deg, #181a21 0%, var(--bg) 34%);
+  color: var(--text);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 28px 16px 64px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────────── */
+.nav {
+  width: 100%; max-width: var(--shell-max);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  margin-bottom: 32px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)),
+    rgba(28,30,37,0.86);
+  box-shadow: 0 18px 34px rgba(0,0,0,0.28);
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-brand img {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.24);
+}
+.nav .brand { font-size: 18px; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--text);
+  background: rgba(255,255,255,0.06);
+}
+
+/* ── Card ─────────────────────────────────────────────────────────── */
+.card {
+  width: 100%; max-width: var(--shell-max);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+    var(--card);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 20px 36px rgba(0,0,0,0.24);
+}
+.card-header {
+  padding: 20px 20px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 14px;
+}
+.card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(124,139,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.card-icon svg { width: 24px; height: 24px; fill: var(--accent); }
+.card-title { font-size: 18px; font-weight: 700; line-height: 1.2; }
+.card-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.fields { padding: 0 8px; }
+.field-row {
+  display: flex; flex-direction: column;
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--border);
+  gap: 4px;
+  cursor: default;
+}
+.field-row:last-child { border-bottom: none; }
+.field-label {
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+.field-value {
+  font-size: 15px; word-break: break-all; line-height: 1.4;
+}
+.field-value.secret {
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.field-value.secret .mask { color: var(--text-faint); letter-spacing: 0.12em; }
+.field-value.secret .reveal-btn {
+  font-size: 12px; color: var(--accent); background: none; border: none;
+  cursor: pointer; padding: 0 0 0 8px; flex-shrink: 0;
+}
+.copy-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 4px;
+  font-size: 12px; color: var(--accent); background: none; border: none;
+  cursor: pointer; padding: 0;
+}
+.copy-btn:hover { opacity: 0.8; }
+.copy-btn.ok { color: var(--green); }
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+.card-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--text-faint);
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 20px; padding: 3px 10px;
+  font-size: 11px; font-weight: 500;
+}
+.badge.green { color: var(--green); }
+.badge.orange { color: var(--orange); }
+
+/* ── States ────────────────────────────────────────────────────────── */
+.state {
+  width: 100%; max-width: var(--shell-max);
+  text-align: center; padding: 48px 16px;
+}
+.state .icon-circle {
+  width: 72px; height: 72px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.state h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.state p { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
+
+/* ── Access code form ──────────────────────────────────────────────── */
+.access-form { width: 100%; max-width: var(--shell-max); }
+.input-group { display: flex; flex-direction: column; gap: 8px; }
+.input-group label { font-size: 13px; color: var(--text-muted); }
+.input-group input {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px;
+  font-size: 17px; color: var(--text); width: 100%;
+  outline: none; transition: border-color 0.15s;
+}
+.input-group input:focus { border-color: var(--accent); }
+.btn {
+  width: 100%; padding: 14px;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 12px;
+  font-size: 16px; font-weight: 600; cursor: pointer;
+  transition: opacity 0.15s;
+  margin-top: 12px;
+}
+.btn:hover { opacity: 0.88; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.error-msg {
+  font-size: 13px; color: var(--red);
+  text-align: center; margin-top: 10px;
+}
+.attempts-left { font-size: 12px; color: var(--text-faint); text-align: center; margin-top: 6px; }
+
+/* ── Spinner ────────────────────────────────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 3px solid rgba(124,139,255,0.2);
+  border-top-color: var(--accent);
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 16px;
+}
+
+/* ── Promo card (shown after successful decrypt) ─────────────────────── */
+.promo-card {
+  width: 100%; max-width: var(--shell-max);
+  margin-top: 16px;
+  background:
+    linear-gradient(160deg, rgba(124,139,255,0.10), rgba(124,139,255,0.04)),
+    rgba(28,30,37,0.6);
+  border: 1px solid rgba(124,139,255,0.22);
+  border-radius: 18px;
+  padding: 20px;
+}
+.promo-row {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 16px;
+}
+.promo-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.36);
+}
+.promo-heading { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.promo-body { font-size: 13px; color: var(--text-muted); line-height: 1.45; }
+.promo-store-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 12px;
+  padding: 13px 20px;
+  font-size: 15px; font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.promo-store-btn:hover { opacity: 0.86; }
+.promo-store-btn svg { flex-shrink: 0; }
+.promo-footnote {
+  margin-top: 12px;
+  font-size: 11px; color: var(--text-faint);
+  text-align: center;
+}
+
+@media (max-width: 620px) {
+  .nav {
+    padding: 12px;
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="assets/appicon.png?v=20260518c" alt="RookPass icon">
+    <span class="brand">RookPass</span>
+  </a>
+  <div class="nav-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:support@rookpass.com">Support</a>
+  </div>
+</nav>
+
+<!-- Loading state -->
+<div id="s-loading" class="state" style="display:none">
+  <div class="spinner"></div>
+  <p>Decrypting your share…</p>
+</div>
+
+<!-- Access code state -->
+<div id="s-access" class="state access-form" style="display:none">
+  <div class="icon-circle" style="background:rgba(255,159,10,0.12);">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--orange)">
+      <path d="M12 1a5 5 0 0 0-5 5v2H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-2V6a5 5 0 0 0-5-5Zm0 2a3 3 0 0 1 3 3v2H9V6a3 3 0 0 1 3-3Zm0 9a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+    </svg>
+  </div>
+  <h2>Access code required</h2>
+  <p style="margin-bottom:24px;">The sender set a password for this share.</p>
+  <div class="input-group">
+    <label for="code-input">Access code</label>
+    <input type="password" id="code-input" placeholder="Enter access code" autocomplete="off" autocorrect="off" spellcheck="false">
+  </div>
+  <div id="code-error" class="error-msg" style="display:none"></div>
+  <div id="code-attempts" class="attempts-left" style="display:none"></div>
+  <button class="btn" id="code-submit">Decrypt</button>
+</div>
+
+<!-- Expired / not found state -->
+<div id="s-gone" class="state" style="display:none">
+  <div class="icon-circle" style="background:rgba(255,69,58,0.12);">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--red)">
+      <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2Zm1 14.25a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM11 7.5h2v5.5h-2V7.5Z"/>
+    </svg>
+  </div>
+  <h2>Link expired or not found</h2>
+  <p>This share has expired, been revoked, or doesn't exist. Ask the sender to create a new one.</p>
+</div>
+
+<!-- Error state -->
+<div id="s-error" class="state" style="display:none">
+  <div class="icon-circle" style="background:rgba(255,69,58,0.12);">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--red)">
+      <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2Zm1 14.25a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM11 7.5h2v5.5h-2V7.5Z"/>
+    </svg>
+  </div>
+  <h2>Could not decrypt</h2>
+  <p id="error-detail">An error occurred. The link may be corrupted.</p>
+</div>
+
+<!-- Lockout state -->
+<div id="s-locked" class="state" style="display:none">
+  <div class="icon-circle" style="background:rgba(255,69,58,0.12);">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--red)">
+      <path d="M12 1a5 5 0 0 0-5 5v2H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-2V6a5 5 0 0 0-5-5Zm0 2a3 3 0 0 1 3 3v2H9V6a3 3 0 0 1 3-3Zm0 9a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+    </svg>
+  </div>
+  <h2>Too many attempts</h2>
+  <p>You have entered the wrong access code 5 times. Reload the page to try again.</p>
+</div>
+
+<!-- Credential card (filled in by JS) -->
+<div id="s-card" class="card" style="display:none">
+  <div class="card-header">
+    <div class="card-icon" id="entry-icon">
+      <!-- filled by JS -->
+    </div>
+    <div>
+      <div class="card-title" id="entry-title"></div>
+      <div class="card-subtitle" id="entry-category"></div>
+    </div>
+  </div>
+  <div class="fields" id="entry-fields"></div>
+  <div class="card-footer" id="card-footer"></div>
+</div>
+
+<!-- Promo — revealed by JS after successful decrypt -->
+<div id="s-promo" class="promo-card" style="display:none">
+  <div class="promo-row">
+    <img src="assets/appicon.png?v=20260518c" alt="RookPass icon" class="promo-icon">
+    <div>
+      <div class="promo-heading">Your friend uses RookPass</div>
+      <div class="promo-body">Free, no account needed. Zero-knowledge encryption keeps your vault on your device.</div>
+    </div>
+  </div>
+  <a href="https://apps.apple.com/app/id6742555308" class="promo-store-btn" target="_blank" rel="noopener noreferrer">
+    <svg width="17" height="20" viewBox="0 0 814 1000" fill="currentColor" aria-hidden="true"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 376.8 8 312.5 8 249.9 8 141 90 78.6 171 78.6c46.8 0 85.8 30.3 115.2 30.3 28 0 73.6-32.2 127.9-32.2 20.6 0 108.2 2 172.4 80.3zm-114.5-65.5c27.3-35.9 47.6-86.3 47.6-136.7 0-7.1-.6-14.3-1.9-20.1-45.1 1.9-99.2 30.3-131.5 71.9-25.1 28.7-50.8 78.4-50.8 129.5 0 7.7 1.3 15.4 1.9 17.9 3.2.6 8.4 1.3 13.6 1.3 40.6 0 89.8-26.7 121.1-63.8z"/></svg>
+    Download on the App Store
+  </a>
+  <p class="promo-footnote">Zero-knowledge encrypted &middot; Decrypted only in your browser</p>
+</div>
+
+<script>
+/* ────────────────────────────────────────────────────────────────────
+   Rook Send receiver — client-side decryption
+   Security notes:
+   • Fragment is never sent to any server (HTTP spec).
+   • AES-256-GCM decryption is entirely in the browser (Web Crypto API).
+   • Access-code flow uses PBKDF2-SHA256, 600k iterations.
+   • Max 5 access-code attempts; lockout on 5th failure.
+   • CSP blocks all external script/image/font resources.
+   ──────────────────────────────────────────────────────────────────── */
+
+const RELAY_BASE = "https://rook-relay.rookapp.workers.dev";
+const MAX_ATTEMPTS = 5;
+let attemptsLeft = MAX_ATTEMPTS;
+let pendingCiphertext = null;
+let pendingNonce = null;
+let shareID = null;
+let fragmentBytes = null;
+
+function show(id) {
+  ["s-loading","s-access","s-gone","s-error","s-locked","s-card"]
+    .forEach(s => document.getElementById(s).style.display = s === id ? "" : "none");
+}
+
+// ── URL parsing ───────────────────────────────────────────────────
+
+function getShareID() {
+  const p = new URLSearchParams(window.location.search);
+  return p.get("id") || null;
+}
+
+function getFragment() {
+  const h = window.location.hash;
+  return h.startsWith("#") ? h.slice(1) : null;
+}
+
+function base64urlDecode(s) {
+  // Restore standard base64 padding
+  s = s.replace(/-/g, "+").replace(/_/g, "/");
+  while (s.length % 4) s += "=";
+  const bin = atob(s);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+  return arr;
+}
+
+// ── Crypto helpers ────────────────────────────────────────────────
+
+async function importKey(raw) {
+  return crypto.subtle.importKey("raw", raw, { name: "AES-GCM" }, false, ["decrypt"]);
+}
+
+async function pbkdf2(password, salt) {
+  const passKey = await crypto.subtle.importKey(
+    "raw", new TextEncoder().encode(password),
+    "PBKDF2", false, ["deriveBits"]
+  );
+  const bits = await crypto.subtle.deriveBits(
+    { name: "PBKDF2", hash: "SHA-256", salt, iterations: 600_000 },
+    passKey, 256
+  );
+  return new Uint8Array(bits);
+}
+
+async function decrypt(key, nonce, ciphertextWithTag, shareId) {
+  // AAD = shareID bytes (must match what the app used for encryption)
+  const aad = new TextEncoder().encode(shareId);
+  const cryptoKey = await importKey(key);
+  try {
+    const plain = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: nonce, additionalData: aad, tagLength: 128 },
+      cryptoKey,
+      ciphertextWithTag
+    );
+    return new TextDecoder().decode(plain);
+  } catch {
+    return null;
+  }
+}
+
+// ── Fetch from relay ──────────────────────────────────────────────
+
+async function fetchShare(id) {
+  const r = await fetch(`${RELAY_BASE}/share/${id}`);
+  if (r.status === 404) return null;
+  if (!r.ok) throw new Error(`Relay returned ${r.status}`);
+  return r.json();
+}
+
+// ── Render card ───────────────────────────────────────────────────
+
+const CATEGORY_ICONS = {
+  personal:    '<path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm-7 8a7 7 0 0 1 14 0H5z"/>',
+  work:        '<path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM9 7V5h6v2H9z"/>',
+  banking:     '<path d="M12 2L2 8v1h20V8L12 2zM4 10v8h2v-8H4zm4 0v8h2v-8H8zm4 0v8h2v-8h-2zm4 0v8h2v-8h-2zM2 20v2h20v-2H2z"/>',
+  shopping:    '<path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM5.2 4H2V6h2l3.6 7.59-1.35 2.45A2 2 0 0 0 8 19h11v-2H8.42l1.1-2H17a2 2 0 0 0 1.76-1.06L21.6 6H5.2z"/>',
+  social:      '<path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>',
+  secureNote:  '<path d="M14 2H6C4.9 2 4 2.9 4 4v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>',
+  sshKey:      '<path d="M12.65 10A6 6 0 1 0 14 14.65L22 23l1.41-1.41-1-1 1-1-1.41-1.42-1 1-1-1 1.41-1.41-2.95-2.95A6 6 0 0 0 12.65 10zM7 14a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>',
+  other:       '<path d="M17.63 5.84C17.27 5.33 16.67 5 16 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h11c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>',
+};
+
+function categoryIconSVG(raw) {
+  const path = CATEGORY_ICONS[raw] || CATEGORY_ICONS.other;
+  return `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">${path}</svg>`;
+}
+
+function renderCard(json, expiresAt) {
+  document.getElementById("entry-title").textContent    = json.title    || "Untitled";
+  document.getElementById("entry-category").textContent = json.category || "";
+  document.getElementById("entry-icon").innerHTML = categoryIconSVG(json.categoryRaw || "");
+
+  const fieldsEl = document.getElementById("entry-fields");
+  fieldsEl.innerHTML = "";
+
+  (json.fields || []).forEach(f => {
+    const row = document.createElement("div");
+    row.className = "field-row";
+
+    const lbl = document.createElement("div");
+    lbl.className = "field-label";
+    lbl.textContent = f.label;
+    row.appendChild(lbl);
+
+    const val = document.createElement("div");
+    if (f.secret === "true") {
+      val.className = "field-value secret";
+      const mask = document.createElement("span");
+      mask.className = "mask";
+      mask.textContent = "••••••••••";
+      const btn = document.createElement("button");
+      btn.className = "reveal-btn";
+      btn.textContent = "Reveal";
+      let revealed = false;
+      btn.addEventListener("click", () => {
+        revealed = !revealed;
+        mask.textContent = revealed ? f.value : "••••••••••";
+        btn.textContent  = revealed ? "Hide"   : "Reveal";
+      });
+      val.appendChild(mask);
+      val.appendChild(btn);
+    } else {
+      val.className   = "field-value";
+      val.textContent = f.value;
+    }
+    row.appendChild(val);
+
+    // Copy button for every field
+    const copyBtn = document.createElement("button");
+    copyBtn.className = "copy-btn";
+    copyBtn.textContent = "Copy";
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(f.value);
+        copyBtn.textContent = "Copied ✓";
+        copyBtn.classList.add("ok");
+        setTimeout(() => { copyBtn.textContent = "Copy"; copyBtn.classList.remove("ok"); }, 2000);
+      } catch { copyBtn.textContent = "—"; }
+    });
+    row.appendChild(copyBtn);
+
+    fieldsEl.appendChild(row);
+  });
+
+  // Footer: expiry + encryption badge
+  const footer = document.getElementById("card-footer");
+  footer.innerHTML = "";
+  const enc = document.createElement("span");
+  enc.className = "badge green";
+  enc.textContent = "🔒 End-to-end encrypted";
+  footer.appendChild(enc);
+
+  if (expiresAt) {
+    const exp = document.createElement("span");
+    exp.className = "badge";
+    const date = new Date(expiresAt);
+    exp.textContent = "Expires " + date.toLocaleDateString(undefined, { month:"short", day:"numeric", hour:"2-digit", minute:"2-digit" });
+    footer.appendChild(exp);
+  }
+
+  show("s-card");
+  document.getElementById("s-promo").style.display = "";
+}
+
+// ── Main flow ─────────────────────────────────────────────────────
+
+async function main() {
+  shareID = getShareID();
+  const fragment = getFragment();
+
+  if (!shareID || !fragment) {
+    show("s-gone");
+    return;
+  }
+
+  try {
+    fragmentBytes = base64urlDecode(fragment);
+  } catch {
+    show("s-gone");
+    return;
+  }
+
+  show("s-loading");
+
+  let shareData;
+  try {
+    shareData = await fetchShare(shareID);
+  } catch (e) {
+    document.getElementById("error-detail").textContent = e.message;
+    show("s-error");
+    return;
+  }
+
+  if (!shareData) {
+    show("s-gone");
+    return;
+  }
+
+  const { ciphertext, nonce, expiresAt } = shareData;
+  pendingCiphertext = base64urlDecode(ciphertext.replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,''));
+  pendingNonce      = base64urlDecode(nonce.replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,''));
+
+  // Determine whether access-code flow: fragment is 32 bytes (salt) and
+  // we must prompt. Without access code: fragment is 32 bytes (key) and
+  // we try to decrypt directly.
+  //
+  // Heuristic: try direct decryption first. If it fails, assume access code.
+  const plain = await decrypt(fragmentBytes, pendingNonce, pendingCiphertext, shareID);
+  if (plain !== null) {
+    try {
+      renderCard(JSON.parse(plain), expiresAt);
+      return;
+    } catch {
+      document.getElementById("error-detail").textContent = "Decrypted data was malformed.";
+      show("s-error");
+      return;
+    }
+  }
+
+  // Direct decryption failed — show access code prompt
+  show("s-access");
+}
+
+// ── Access code flow ──────────────────────────────────────────────
+
+document.getElementById("code-submit").addEventListener("click", tryAccessCode);
+document.getElementById("code-input").addEventListener("keydown", e => {
+  if (e.key === "Enter") tryAccessCode();
+});
+
+async function tryAccessCode() {
+  if (attemptsLeft <= 0) { show("s-locked"); return; }
+
+  const code = document.getElementById("code-input").value;
+  if (!code) return;
+
+  document.getElementById("code-submit").disabled = true;
+  document.getElementById("code-error").style.display = "none";
+
+  try {
+    const derivedKey = await pbkdf2(code, fragmentBytes);
+    const plain = await decrypt(derivedKey, pendingNonce, pendingCiphertext, shareID);
+
+    if (plain === null) {
+      attemptsLeft--;
+      document.getElementById("code-submit").disabled = false;
+      document.getElementById("code-error").textContent = "Wrong access code. Try again.";
+      document.getElementById("code-error").style.display = "";
+      if (attemptsLeft > 0) {
+        document.getElementById("code-attempts").textContent = `${attemptsLeft} attempt${attemptsLeft === 1 ? "" : "s"} remaining`;
+        document.getElementById("code-attempts").style.display = "";
+      } else {
+        show("s-locked");
+      }
+      return;
+    }
+
+    try {
+      const json = JSON.parse(plain);
+      renderCard(json, null);
+    } catch {
+      document.getElementById("error-detail").textContent = "Decrypted data was malformed.";
+      show("s-error");
+    }
+  } catch (e) {
+    document.getElementById("code-submit").disabled = false;
+    document.getElementById("code-error").textContent = "Decryption error: " + e.message;
+    document.getElementById("code-error").style.display = "";
+  }
+}
+
+// Kick off on page load
+main().catch(e => {
+  document.getElementById("error-detail").textContent = e.message;
+  show("s-error");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="RookPass What's New — product updates and notable improvements in each release.">
+<meta name="theme-color" content="#14151a">
+<meta name="color-scheme" content="dark">
+<title>What's New — RookPass</title>
+<link rel="icon" type="image/png" href="assets/appicon.png">
+<link rel="stylesheet" href="assets/style.css?v=site-shell-8">
+</head>
+<body>
+
+<nav class="subpage-nav">
+  <a class="brand" href="index.html">
+    <img src="assets/appicon.png" alt="">
+    <span>RookPass</span>
+  </a>
+  <a class="back" href="index.html">← Back</a>
+</nav>
+
+<div class="container">
+
+  <header class="page-header">
+    <div class="label">What's New</div>
+    <h1>What's new</h1>
+    <div class="meta">Product updates and notable improvements in each release of RookPass.</div>
+    <div class="meta"><strong>Current production release:</strong> Version 3.6</div>
+  </header>
+
+  <!-- Version 3.6 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 3.6</span>
+      <span class="release-tag">smarter review timing &amp; continued polish</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Trust &amp; Retention</div>
+      <ul class="change-list">
+        <li><strong>More thoughtful review timing</strong> &mdash; review prompts now wait for meaningful progress, so feedback asks are tied to genuine wins instead of random moments.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Polish</div>
+      <ul class="change-list">
+        <li><strong>Continued setup, Home, and AutoFill polish</strong> &mdash; additional small fixes and refinement across the core first-run and daily-use flows.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 3.4 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 3.4</span>
+      <span class="release-tag">Previous release</span>
+      <span class="release-tag">Bulk actions, 2FA widget &amp; onboarding improvements</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Vault (Pro)</div>
+      <ul class="change-list">
+        <li><strong>Bulk actions</strong> &mdash; tap <em>Select Entries&hellip;</em> from the vault toolbar to enter multi-select mode. Select individual rows or use <em>Select All</em>, then delete or move a whole batch to any folder in one tap. Available to RookPass Pro subscribers.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Widgets</div>
+      <ul class="change-list">
+        <li><strong>2FA Codes medium widget</strong> &mdash; a new medium-size Home Screen widget shows live TOTP codes for your top two pinned entries side by side, with a color-coded countdown bar so you always know how long each code has left.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Onboarding</div>
+      <ul class="change-list">
+        <li><strong>Save from Safari walkthrough</strong> &mdash; the setup guide now includes a fourth step explaining how Safari automatically offers to save new logins directly into RookPass once AutoFill is enabled &mdash; no copy-paste, no leaving the browser.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Rook Send</div>
+      <ul class="change-list">
+        <li><strong>Rook Send polish</strong> &mdash; Sent Links feels more refined, with clearer revoke, view-count, and view-state messaging throughout the flow. Labels are now fully localized instead of falling back to raw system text.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Reliability</div>
+      <ul class="change-list">
+        <li><strong>Faster Face ID / Touch ID retry</strong> &mdash; after a failed biometric attempt, retry is available sooner so unlock feels less sticky.</li>
+        <li><strong>Friendlier recovery paths</strong> &mdash; vault setup, biometric enrollment, recovery codes, iCloud conflict restore, trash restore, and vault-management actions now fail with clearer user-facing guidance instead of leaking raw system errors.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Localization</div>
+      <ul class="change-list">
+        <li><strong>Runtime localization hardening</strong> &mdash; more dynamic labels, counters, and fallback messages now route through the string catalog across every supported locale.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 3.3 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 3.3</span>
+      <span class="release-tag">Rook Send: burn after reading, view counter &amp; share page polish</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Rook Send (Pro)</div>
+      <ul class="change-list">
+        <li><strong>Burn after reading</strong> &mdash; toggle the flame option when creating a link and the relay permanently deletes the encrypted payload the moment the first person opens it. Combine it with a time limit &mdash; whichever expires first wins.</li>
+        <li><strong>View counter</strong> &mdash; Sent Links now shows how many times each link has been viewed. Links with a burn-after-reading flag are automatically removed from your list once the relay confirms they&rsquo;ve been opened.</li>
+        <li><strong>Active link badge</strong> &mdash; the Sent Links row in Settings displays a live count of your unexpired shares so you always know what&rsquo;s still out there.</li>
+        <li><strong>Per-category icons on the share page</strong> &mdash; the recipient&rsquo;s browser now shows the correct icon for each entry type (login, secure note, banking, SSH key, and more) instead of a generic key.</li>
+        <li><strong>Compact field selector</strong> &mdash; choosing which fields to share now uses a tight two-column chip grid instead of full-height toggles, so the Create Secure Link button is always visible without scrolling.</li>
+        <li><strong>Result screen polish</strong> &mdash; the entry title, heading, and description are now arranged in a clearer hierarchy on the link-created screen.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 2.8 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 2.8</span>
+      <span class="release-tag">AutoFill reliability, passkey polish &amp; Italian / Japanese / Portuguese</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Bug fixes</div>
+      <ul class="change-list">
+        <li><strong>AutoFill &ldquo;incorrect password&rdquo; after reinstall fixed</strong> &mdash; a stale biometric key left in the keychain by a previous install could pass Face ID but fail to decrypt the new vault. RookPass now clears the old key at vault creation so fresh installs always start clean.</li>
+        <li><strong>AutoFill vault decode fixed</strong> &mdash; the AutoFill extension was trying to decode the vault as a bare JSON array, but the main app stores it as a keyed envelope. All unlock methods (master password, PIN, Face ID) now work correctly in AutoFill.</li>
+        <li><strong>Face ID prompt timing fixed</strong> &mdash; enabling Face ID during setup now immediately triggers the OS &ldquo;Allow Face ID?&rdquo; permission dialog rather than deferring it to the next app launch.</li>
+        <li><strong>AutoFill Face ID auto-trigger fixed</strong> &mdash; Face ID no longer fires and immediately fails when the AutoFill sheet opens. A short pause ensures the extension is fully presented before the biometric prompt appears, and system-cancel errors are now handled silently.</li>
+        <li><strong>Passkey registration requires authentication</strong> &mdash; creating a passkey via AutoFill now requires vault unlock first. This eliminates a blank-screen flash users saw before, and closes a security gap where passkeys could previously be registered without proving vault ownership.</li>
+        <li><strong>PIN step transition fixed</strong> &mdash; the slide animation between setup steps no longer jumps or bleeds outside the view container.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Localization</div>
+      <ul class="change-list">
+        <li><strong>Italian, Japanese &amp; Brazilian Portuguese</strong> &mdash; RookPass is now translated into Italian (<em>it</em>), Japanese (<em>ja</em>), and Brazilian Portuguese (<em>pt&#8209;BR</em>). All six non-English locales now have complete coverage across every screen.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Polish</div>
+      <ul class="change-list">
+        <li><strong>Home import button</strong> &mdash; &ldquo;Import from another app&rdquo; on the Home screen now uses the same accent-color style as the Vault screen, making it visually actionable rather than appearing dimmed.</li>
+        <li><strong>Onboarding copy updated</strong> &mdash; step 3 in the setup roadmap now accurately describes the AutoFill one-tap flow.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 2.7 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 2.7</span>
+      <span class="release-tag">French, German &amp; Spanish language support</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Localization</div>
+      <ul class="change-list">
+        <li><strong>French, German &amp; Spanish</strong> &mdash; RookPass is now fully translated into French (<em>fr</em>), German (<em>de</em>), and Spanish (<em>es</em>). Every screen, every field label, every status message, and every import guide now appears in your device language automatically.</li>
+        <li><strong>Complete coverage</strong> &mdash; every screen in the app &mdash; including vault entry field labels, password health descriptions, onboarding, the import wizard, secure-share flow, and Pro features &mdash; is fully translated in all three languages.</li>
+        <li><strong>Template field labels</strong> &mdash; structured item types (Credit Card, Identity, Passport, Driver&rsquo;s License, Bank Account, API Credential, Software License) now display field names like &ldquo;Cardholder Name&rdquo;, &ldquo;Date of Birth&rdquo;, and &ldquo;Routing Number&rdquo; in your selected language.</li>
+        <li><strong>Health dashboard</strong> &mdash; score labels, descriptions, category names, and estimated fix times now respect the device language.</li>
+        <li><strong>Starter checklist</strong> &mdash; setup progress titles on the Home screen are now localized.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 2.6 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 2.6</span>
+      <span class="release-tag">Onboarding, recovery, settings &amp; theme polish</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">First Run</div>
+      <ul class="change-list">
+        <li><strong>Security-first onboarding</strong> &mdash; the first-launch flow now opens with a tighter two-screen introduction that explains RookPass's local-first model and gets you into setup faster.</li>
+        <li><strong>Cleaner setup handoff</strong> &mdash; creating your vault, choosing quick unlock, and landing in Home now feel more direct and less like a walkthrough you have to clear.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Recovery &amp; Lock Screen</div>
+      <ul class="change-list">
+        <li><strong>Forgot master password path</strong> &mdash; the lock screen now gives you a real way forward. Retry biometrics, use a saved recovery code, or erase the vault and start over.</li>
+        <li><strong>Recovery codes are optional backup</strong> &mdash; they are still available from Settings &rarr; Security, but they are no longer forced during first-run setup.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Themes &amp; Settings</div>
+      <ul class="change-list">
+        <li><strong>Stronger theme model</strong> &mdash; RookPass now leans on a smaller set of complete themes instead of mixing themes with separate accent choices.</li>
+        <li><strong>Fern is back</strong> &mdash; the green theme returns under its original name.</li>
+        <li><strong>Simpler Theme picker</strong> &mdash; choosing a theme in Settings is back to a straightforward list.</li>
+        <li><strong>Vault tab theme fixes</strong> &mdash; the Vault list, chips, rows, and supporting surfaces now follow your selected theme correctly.</li>
+        <li><strong>Settings cleanup</strong> &mdash; stale onboarding replay is gone, destructive sheets now use the real RookPass theme tokens, and the page better matches the rest of the app.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 2.5 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 2.5</span>
+      <span class="release-tag">Security hardening, import &amp; polish</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Security</div>
+      <ul class="change-list">
+        <li><strong>Change PIN or passphrase</strong> &mdash; update your quick-unlock PIN or passphrase at any time from Settings &rarr; Security without needing to wipe and re-enroll.</li>
+        <li><strong>Passphrase unlock</strong> &mdash; use an alphanumeric passphrase instead of a 6-digit PIN for quick unlock. Any length, letters and symbols allowed.</li>
+        <li><strong>Master password lockout</strong> &mdash; after 10 failed attempts RookPass locks for 15 minutes. Resets automatically on any successful unlock.</li>
+        <li><strong>Recovery codes use secure clipboard</strong> &mdash; copied codes auto-clear after 60 seconds and are wiped when the app backgrounds, matching password copy behavior.</li>
+        <li><strong>Fixed iOS Save Password prompt</strong> &mdash; the system &ldquo;Save Password&rdquo; prompt no longer appears when entering your master password on the lock screen, in Settings, or during setup.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Import</div>
+      <ul class="change-list">
+        <li><strong>Import from KeePass, 1Password, Proton Pass, and Google Authenticator</strong> &mdash; drop in an XML or JSON export and RookPass auto-detects the format. Existing Apple Passwords CSV and .rook imports still work as before.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Password Health</div>
+      <ul class="change-list">
+        <li><strong>Fix All bulk action</strong> &mdash; tap &ldquo;Fix All&rdquo; at the top of any expanded category to step through every issue in one guided session.</li>
+        <li><strong>Category context</strong> &mdash; each health category now shows a brief explanation of why it matters.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Theme &amp; Visual Polish</div>
+      <ul class="change-list">
+        <li><strong>Fixed custom themes on the lock screen</strong> &mdash; Midnight, Abyss, Fern, and Parchment now display correctly on unlock and setup screens.</li>
+        <li><strong>Fixed theme consistency</strong> &mdash; AutoFill setup guide, Paywall, Pro Expired, Guided Fix, and Recovery Codes screens now render with the correct theme styling.</li>
+        <li><strong>Fixed vault list fade artifact</strong> &mdash; resolved a visual issue that could appear as a bright stripe on dark themes.</li>
+        <li><strong>Fixed card and row backgrounds</strong> &mdash; Activity Log and Password Detail now use the correct surface colors.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Haptics</div>
+      <ul class="change-list">
+        <li><strong>Haptic feedback fully respects your setting</strong> &mdash; interactions now honor the haptics toggle consistently, including cases that could previously fire when haptics were disabled.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Also in this update</div>
+      <ul class="change-list">
+        <li><strong>iCloud sync reliability</strong> &mdash; each vault now syncs to its own independent CloudKit record.</li>
+        <li><strong>Add a PIN from Settings</strong> &mdash; users who skipped PIN setup during onboarding can now enroll a PIN or passphrase at any time from Settings &rarr; Security.</li>
+        <li><strong>PIN confirm screen layout</strong> &mdash; the keypad no longer shifts size when advancing from &ldquo;Create your PIN&rdquo; to &ldquo;Confirm your PIN&rdquo;.</li>
+        <li><strong>Password strength on master password change</strong> &mdash; a live strength indicator now appears while typing a new master password in Settings.</li>
+        <li><strong>Passphrase strength + reveal</strong> &mdash; when changing or setting up a passphrase unlock in Settings, a live strength bar and a show/hide toggle now appear on the passphrase field.</li>
+        <li><strong>PIN vs. passphrase confirmation</strong> &mdash; the success alert after changing your quick-unlock credential now says &ldquo;PIN Updated&rdquo; or &ldquo;Passphrase Updated&rdquo; instead of the generic &ldquo;Updated&rdquo;.</li>
+        <li><strong>&ldquo;Stay Unlocked After Relaunch&rdquo;</strong> &mdash; the Relaunch Grace setting is now labelled more clearly in Settings &rarr; Security.</li>
+        <li><strong>Corrected Settings &rarr; App Guide link</strong> &mdash; the onboarding walkthrough now correctly points to Settings &rarr; App Guide (not Settings &rarr; About).</li>
+        <li><strong>No more spurious paste dialog</strong> &mdash; the app no longer triggers the iOS paste-permission alert on launch or when the screen turns off, by avoiding unnecessary pasteboard reads.</li>
+        <li><strong>Default Password App save sheet</strong> &mdash; when RookPass is set as the Default Password App, a save confirmation sheet now appears when a login form is submitted. The credential is held securely until the vault is next unlocked.</li>
+        <li><strong>Swipe actions renamed</strong> &mdash; &ldquo;Copy PW&rdquo; is now &ldquo;Copy Password&rdquo; and &ldquo;Unfave&rdquo; is now &ldquo;Unfavorite&rdquo; in the password list swipe actions.</li>
+        <li><strong>Accessibility</strong> &mdash; the security score ring and AutoFill banner now announce their content to VoiceOver clearly.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 2.4 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 2.4</span>
+      <span class="release-tag">Password Health overhaul</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Password Health &mdash; Major Improvements</div>
+      <ul class="change-list">
+        <li><strong>Smarter badge</strong> &mdash; the Health tab badge now excludes issues you&rsquo;ve already ignored, so the number always reflects what still needs attention.</li>
+        <li><strong>Quick Password Change</strong> &mdash; fixing a weak, reused, old, or breached password opens a focused sheet with your current password (masked, with reveal and copy), a live strength bar, and one-tap strong-password generation.</li>
+        <li><strong>Side-by-side duplicate review</strong> &mdash; both entries are shown together so you can compare them before deciding which to keep.</li>
+        <li><strong>Fix all at once</strong> &mdash; tap &ldquo;Fix all N&rdquo; at the top of any expanded category to step through every issue in one guided session.</li>
+        <li><strong>Ignore all at once</strong> &mdash; long-press any category header to dismiss every issue in that section.</li>
+        <li><strong>Reused password context</strong> &mdash; each reused entry shows how many other accounts share that password, so you can prioritise the most exposed ones first.</li>
+        <li><strong>Less 2FA noise</strong> &mdash; &ldquo;2FA Not Configured&rdquo; warnings are no longer shown for accounts with no website or known TOTP support.</li>
+        <li><strong>Accurate age warnings</strong> &mdash; guided-fix descriptions for old passwords reference your actual configured age threshold, not a hardcoded value.</li>
+        <li><strong>Cleaner tab bar</strong> &mdash; the security badge now only appears on the Health tab, not the Home tab.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Vault List</div>
+      <ul class="change-list">
+        <li><strong>Icon legend</strong> &mdash; tap &middot;&middot;&middot; then &ldquo;What do the icons mean?&rdquo; to learn what the star, 2FA, passkey, and strength dot icons mean at a glance.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 2.2 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 2.2</span>
+      <span class="release-tag">One-tap import &amp; vault protection</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="change-list">
+        <li><strong>Import from Apple Passwords in one tap</strong> &mdash; export your passwords from Apple Passwords (or any app that can share a CSV, JSON, or <code>.rook</code> file) and tap &ldquo;Share &rarr; RookPass&rdquo;. RookPass opens straight to the import preview &mdash; no file-picker needed. If your vault is locked when the file arrives, RookPass queues it and shows the preview the moment you unlock.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Security</div>
+      <ul class="change-list">
+        <li><strong>Master password required to wipe</strong> &mdash; the &ldquo;Reset App &amp; Delete All Data&rdquo; action now requires you to verify your master password before the &ldquo;type DELETE&rdquo; confirmation is shown. This prevents an accidental (or malicious) tap from destroying your vault.</li>
+        <li><strong>&ldquo;Wipe &amp; Start Over&rdquo; removed from lock screen</strong> &mdash; the prominent one-tap wipe button has been removed from the lock screen. An emergency path (&ldquo;Can&rsquo;t access your vault?&rdquo;) remains for users who are truly locked out, but it now requires typing &ldquo;DELETE&rdquo; in full before the action proceeds.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 2.1 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 2.1</span>
+      <span class="release-tag">AutoFill save &amp; polish</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="change-list">
+        <li><strong>Save from AutoFill</strong> — when you log in to a site that isn&rsquo;t in your vault, a &ldquo;New Login for [domain]&rdquo; row appears at the bottom of the AutoFill credential list. Tap it and RookPass opens directly to a pre-filled Add Entry form so you can save the credential in seconds.</li>
+        <li><strong>Save on form submit (iOS 26.2+)</strong> — when RookPass is set as your Default Password App and you submit a login form in Safari, iOS asks RookPass to save the credential on the spot. RookPass shows a &ldquo;Save to RookPass?&rdquo; sheet with the site, username, and masked password. Existing entries are updated; new credentials are added to your vault automatically.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Improved</div>
+      <ul class="change-list">
+        <li><strong>Biometric-first unlock</strong> — the lock screen now leads with Face ID or Touch ID rather than the master password field. Biometrics are attempted immediately on open; the master password fallback is still one tap away.</li>
+        <li><strong>Home tab recents</strong> — recent entries are now displayed as full-width stacked cards instead of a horizontal scroll. The &ldquo;Add Item&rdquo; tile on Home opens the type-picker sheet directly.</li>
+        <li><strong>Passkey registration</strong> — passkeys registered through the AutoFill extension are now correctly saved to your vault on the next app unlock. Previously, passkey registrations were acknowledged to the website but silently lost from the vault.</li>
+        <li><strong>Password expiry discovery</strong> — the &ldquo;Set expiry date&rdquo; option in Add / Edit entry is now visible to all users, showing a Pro badge for free accounts. Previously the section was hidden entirely, making the feature impossible to discover before upgrading.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 2.0 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 2.0</span>
+      <span class="release-tag">Rook Send</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="change-list">
+        <li><strong>Rook Send (Pro)</strong> — share any vault entry as a secure, expiring link. The recipient opens a link in any browser — no app required. Encryption happens entirely on your device; our relay stores only ciphertext and never sees your key.</li>
+        <li><strong>Zero-knowledge encryption</strong> — each share uses AES-256-GCM with a random 32-byte key. The key lives only in the URL fragment, which is never sent to any server by HTTP spec. Without the full URL, even RookPass's relay cannot read your data.</li>
+        <li><strong>Access code protection</strong> — optionally set a password on a share. The key is then derived via PBKDF2-SHA256 (600k iterations) from your access code and a URL-embedded salt. The recipient must enter the code to decrypt; 5 wrong attempts locks the page.</li>
+        <li><strong>Expiry control</strong> — shares expire automatically after 1 hour, 24 hours, or 7 days. The relay deletes the ciphertext when the TTL passes.</li>
+        <li><strong>Sent list</strong> — see all your active shares in Settings → Sent Links. Revoke any link instantly with one tap; the relay deletes the payload immediately.</li>
+        <li><strong>Swipe to share</strong> — swipe left on any vault entry and tap the share icon to open the Send sheet.</li>
+      </ul>
+    </div>
+  </section>
+  <!-- Version 1.8 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 1.8</span>
+      <span class="release-tag">RookPass Home</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="change-list">
+        <li><strong>Home tab</strong> — a new first tab gives you your security score, live TOTP codes, and your most-used entries at a glance. The health score ring is always visible so your posture is ambient, not buried.</li>
+        <li><strong>Live TOTP strip</strong> — pin up to 5 entries from the 2FA tab. Their ticking countdown codes appear on Home; tap to copy instantly without switching tabs.</li>
+        <li><strong>Smart Recents</strong> — your four most-used entries surface as large tap targets on Home. Free tier uses pure recency; Pro tier blends recency with open-frequency weighting for smarter ranking.</li>
+        <li><strong>Tab restructure</strong> — tabs are now Home / Vault / 2FA / Health / Settings. The Home badge mirrors the Health badge so issues are always visible.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Improved</div>
+      <ul class="change-list">
+        <li>Pin up to 5 TOTP entries (previously limited to 1). All pinned entries appear on the Home TOTP strip; the first pinned entry continues to drive the home screen widget.</li>
+        <li>Entry open counts are now tracked persistently across launches and used for Pro-tier frequency-weighted recents ranking.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 1.7 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 1.7</span>
+      <span class="release-tag">Structured item types</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="changes">
+        <li><span class="pill pill-new">New</span> <strong>Credit Card</strong> — store cardholder name, card number, brand, expiry, CVV, and billing ZIP with a dedicated card form.</li>
+        <li><span class="pill pill-new">New</span> <strong>Identity</strong> — save personal details including name, date of birth, contact info, address, and masked SSN.</li>
+        <li><span class="pill pill-new">New</span> <strong>Bank Account</strong> — store routing number, account number, IBAN, and SWIFT/BIC securely.</li>
+        <li><span class="pill pill-new">New</span> <strong>Passport</strong> — keep passport number, country, nationality, and expiry all in one place.</li>
+        <li><span class="pill pill-new">New</span> <strong>Driver&rsquo;s License</strong> — store your license number, state/region, and validity dates.</li>
+        <li><span class="pill pill-new">New</span> <strong>API Credential</strong> — dedicated form for API keys, endpoints, and organisation details.</li>
+        <li><span class="pill pill-new">New</span> <strong>Software License</strong> — track license keys, registered emails, order numbers, and publisher info.</li>
+        <li><span class="pill pill-new">New</span> <strong>Item type picker</strong> — tapping + now opens a categorised grid so you can choose exactly what to add: login, secure note, or any structured type.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Improved</div>
+      <ul class="changes">
+        <li><span class="pill pill-improved">Improved</span> <strong>Password Health</strong> — structured items that don&rsquo;t use passwords (cards, identity, passports, etc.) are now automatically excluded from weak, reused, old, and duplicate password checks.</li>
+        <li><span class="pill pill-improved">Improved</span> <strong>Vault list</strong> — each item type shows its own icon and accent colour for at-a-glance identification.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Version 1.6 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 1.6</span>
+      <span class="release-tag">Generator &amp; autofill upgrades</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="change-list">
+        <li><strong>Username generator</strong> — generate random usernames alongside passwords in the Add / Edit form. Choose from adjective-noun combos, email aliases, or random strings.</li>
+        <li><strong>Minimum-character guarantees</strong> — set per-type floors (digits, symbols, uppercase) in the password generator so generated passwords always meet a site's specific requirements.</li>
+        <li><strong>TOTP autofill</strong> — RookPass now surfaces TOTP codes directly in the AutoFill suggestion bar in Safari and in-app keyboards, so you can tap to fill your 2FA code without switching apps.</li>
+        <li><strong>URI matching</strong> — AutoFill now uses full URL-path matching (not just domain) to surface the most specific credential for a given login page.</li>
+        <li><strong>Health &ldquo;Ignore&rdquo;</strong> — mark any entry as ignored in Password Health. Ignored entries are skipped in weak, reused, old, and duplicate checks, and are hidden from the Guided Fix workflow.</li>
+        <li><strong>Breach badge</strong> — entries that have been confirmed breached show an inline badge in the vault list so you can spot them at a glance without opening the entry.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- Version 1.5 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 1.5</span>
+      <span class="release-tag">Pro lifecycle &amp; polish</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="changes">
+        <li><span class="pill pill-new">New</span> <strong>7-day free trial</strong> — new subscribers can try RookPass Pro free for 7 days before the annual subscription begins. No charge until the trial ends.</li>
+        <li><span class="pill pill-new">New</span> <strong>Graceful Pro expiry</strong> — if a Pro subscription lapses, a clear sheet explains which features are paused and offers a one-tap renewal. Your vault and all its data remain completely intact.</li>
+        <li><span class="pill pill-new">New</span> <strong>Renewal reminder</strong> — the Pro row in Settings shows &ldquo;Renews in N days&rdquo; in amber when renewal is within 7 days, so you&rsquo;re never surprised.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Fixed</div>
+      <ul class="changes">
+        <li><span class="pill pill-fix">Fix</span> Password list rows, 2FA rows, and detail screens now correctly adopt all four app themes (Default, Indigo, Fern, Abyss) — no more black rows on dark themes.</li>
+        <li><span class="pill pill-fix">Fix</span> Health tab redesigned as a single grouped card. New users see an onboarding screen with a feature overview instead of an empty broken list.</li>
+        <li><span class="pill pill-fix">Fix</span> Vault filter empty state is now context-aware — filtering by &ldquo;Social&rdquo; shows &ldquo;No Social entries&rdquo; rather than the generic &ldquo;Your vault is empty&rdquo; message.</li>
+        <li><span class="pill pill-fix">Fix</span> AutoFill setup screen simplified to two clear status checks with a single action button — easier to diagnose and fix in one tap.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- Version 1.4 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 1.4</span>
+      <span class="release-tag">Power &amp; polish</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="changes">
+        <li><span class="pill pill-new">New</span> <strong>2FA long-press menu</strong> — long-press any code row to copy the code, copy the password, open the entry, or pin it to the widget.</li>
+        <li><span class="pill pill-new">New</span> <strong>Password strength indicator</strong> — each vault row now shows a small coloured dot reflecting the password's entropy (weak → red, fair → orange, strong → green, very strong → teal).</li>
+        <li><span class="pill pill-new">New</span> <strong>2FA home screen widget</strong> — pin any TOTP entry from the 2FA tab and get a live countdown code directly on your home screen. Vault is locked between sessions; widget shows a locked state until you open the app.</li>
+        <li><span class="pill pill-new">New</span> <strong>Bulk actions (Pro)</strong> — enter multi-select mode from the vault toolbar to move, tag, or delete many entries at once.</li>
+        <li><span class="pill pill-new">New</span> <strong>Expanded import</strong> — RookPass now imports LastPass CSV exports and Apple Passwords CSV exports (iOS 18 / macOS Sequoia), including OTPAuth 2FA codes.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Fixed</div>
+      <ul class="changes">
+        <li><span class="pill pill-fix">Fix</span> Copying a 2FA code now shows a small inline checkmark rather than replacing the code text with &ldquo;Copied!&rdquo; — the code stays readable the whole time.</li>
+        <li><span class="pill pill-fix">Fix</span> 2FA tab empty state now clearly explains that entries appear automatically when an entry has a TOTP secret — and provides a quick guide for adding one to an existing entry.</li>
+        <li><span class="pill pill-fix">Fix</span> Upgrade screen now shows a confirmation state (&ldquo;You&rsquo;re on Pro&rdquo;) if opened while already subscribed, instead of the purchase button.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- Version 1.3 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 1.3</span>
+      <span class="release-tag">Organize &amp; extend</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="changes">
+        <li><span class="pill pill-new">New</span> <strong>Custom categories</strong> — Pro users can label entries with any category name beyond the 8 built-in types. Custom categories appear as filter chips in the vault list.</li>
+        <li><span class="pill pill-new">New</span> <strong>Folders</strong> — organise entries into folders for quick filtering. Folders are a free feature; assign them in the Add / Edit entry form.</li>
+        <li><span class="pill pill-new">New</span> <strong>Dedicated 2FA view</strong> — a standalone tab lists every TOTP entry with live countdown rings so RookPass acts as a full authenticator replacement. Tap any row to copy the code.</li>
+        <li><span class="pill pill-new">New</span> <strong>Password expiry reminders</strong> — set an optional expiry date on any entry. Expiring entries surface in a new &ldquo;Expiring Soon&rdquo; health category and trigger a local notification (Pro).</li>
+        <li><span class="pill pill-new">New</span> <strong>Persistent audit log</strong> — security events (unlocks, edits, exports) are encrypted and stored across app launches for Pro users. Free tier keeps an in-session log only.</li>
+        <li><span class="pill pill-new">New</span> <strong>Unlimited password history</strong> — Pro vaults retain every historical password. Free tier keeps the last 3 per entry.</li>
+        <li><span class="pill pill-new">New</span> <strong>iCloud conflict resolution</strong> — when &ldquo;Restore from iCloud&rdquo; detects a diverged vault, a sheet lets you choose to merge, use the cloud copy, or keep your local data.</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Fixed</div>
+      <ul class="changes">
+        <li><span class="pill pill-fix">Fix</span> Alternate app icon picker now correctly switches icons. Previously the picker silently failed because the CFBundleAlternateIcons entries were missing from Info.plist.</li>
+        <li><span class="pill pill-fix">Fix</span> Icon set trimmed to Navy, Sage, and Mono — three alternate options with clear visual distinction.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- Version 1.2 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 1.2</span>
+      <span class="release-tag">Pro features</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="changes">
+        <li><span class="pill pill-new">New</span> <strong>RookPass Pro</strong> — optional annual subscription unlocking advanced power-user features.</li>
+        <li><span class="pill pill-new">New</span> <strong>SSH key storage</strong> — generate and store Ed25519 / RSA SSH keys directly in your vault (Pro).</li>
+        <li><span class="pill pill-new">New</span> <strong>Per-entry biometric lock</strong> — require Face ID or Touch ID before revealing the password for a specific entry (Pro).</li>
+        <li><span class="pill pill-new">New</span> <strong>Vault-wide breach scan</strong> — scan every password against the Have I Been Pwned database in a single tap (Pro).</li>
+        <li><span class="pill pill-new">New</span> <strong>Multiple vaults</strong> — create and switch between separate encrypted vaults (Pro).</li>
+        <li><span class="pill pill-new">New</span> <strong>Alternate app icons</strong> — choose from Navy, Sage, and Mono icon styles in Settings.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- Version 1.1 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 1.1</span>
+      <span class="release-tag">Security &amp; resilience</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="changes">
+        <li><span class="pill pill-new">New</span> <strong>Recovery codes</strong> — generate a batch of single-use offline backup codes to regain vault access if biometrics and PIN are unavailable.</li>
+        <li><span class="pill pill-new">New</span> <strong>Relaunch grace</strong> — optional setting that lets you re-enter the app within 5 minutes of backgrounding using biometrics only, skipping the master password.</li>
+        <li><span class="pill pill-new">New</span> <strong>Security audit log</strong> — in-app history of unlock attempts, credential changes, and security events, accessible from Settings.</li>
+        <li><span class="pill pill-new">New</span> <strong>Trash with configurable retention</strong> — deleted entries are soft-deleted and auto-purged after a configurable number of days (default 30).</li>
+      </ul>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">Fixed</div>
+      <ul class="changes">
+        <li><span class="pill pill-fix">Fix</span> Biometric unlock (Face ID / Touch ID) no longer silently disables itself after an app restart — keychain access group and migration handling hardened.</li>
+        <li><span class="pill pill-fix">Fix</span> PIN attempt counter is now stored securely in the Keychain, hardening the brute-force lockout against tampering.</li>
+        <li><span class="pill pill-fix">Fix</span> Settings no longer triggers a spurious Face ID prompt on open.</li>
+        <li><span class="pill pill-fix">Fix</span> Auto-lock timeout now correctly applies across process restarts, not only within the same session.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- Version 1.0 -->
+  <section class="release">
+    <div class="release-header">
+      <span class="release-version">Version 1.0</span>
+      <span class="release-tag">Initial release</span>
+    </div>
+
+    <div class="change-group">
+      <div class="change-group-title">New</div>
+      <ul class="changes">
+        <li><span class="pill pill-new">New</span> AES-256-GCM encrypted vault — all data on-device, zero-knowledge architecture.</li>
+        <li><span class="pill pill-new">New</span> Face ID, Touch ID, and master-password unlock flows.</li>
+        <li><span class="pill pill-new">New</span> 4 or 6-digit PIN as a quick-unlock option with rate-limited attempts.</li>
+        <li><span class="pill pill-new">New</span> Passkey support — register and sign WebAuthn assertions from the RookPass AutoFill extension.</li>
+        <li><span class="pill pill-new">New</span> TOTP / 2FA code generation with live countdown ring, QR scanner, and full <code>otpauth://</code> parameter support (SHA-1 / SHA-256 / SHA-512, custom digits and period).</li>
+        <li><span class="pill pill-new">New</span> Password Health Score — detects weak, reused, and unchanged passwords with a Guided Fix workflow.</li>
+        <li><span class="pill pill-new">New</span> AutoFill extension — passwords and passkeys appear in Safari and in-app login prompts.</li>
+        <li><span class="pill pill-new">New</span> Tags &amp; chip filter — search and organise across your own taxonomy, not just the built-in categories.</li>
+        <li><span class="pill pill-new">New</span> App Intents — generate a password, look up an entry, or lock the vault from Shortcuts and the Action Button.</li>
+        <li><span class="pill pill-new">New</span> Light / Dark / System theme setting.</li>
+        <li><span class="pill pill-new">New</span> Import CSV from Chrome, Safari, 1Password, Bitwarden — plus encrypted <code>.rook</code> re-import.</li>
+        <li><span class="pill pill-new">New</span> Export vault to CSV or encrypted <code>.rook</code> archive.</li>
+        <li><span class="pill pill-new">New</span> Optional iCloud sync — only encrypted ciphertext is ever uploaded.</li>
+        <li><span class="pill pill-new">New</span> Spotlight search integration.</li>
+        <li><span class="pill pill-new">New</span> Password generator with length, complexity, and passphrase options.</li>
+        <li><span class="pill pill-new">New</span> Configurable auto-lock timeout and unchanged-password age threshold.</li>
+        <li><span class="pill pill-new">New</span> Favourites, categories, sort, and notes / custom fields per entry.</li>
+        <li><span class="pill pill-new">New</span> Themed home-screen widget.</li>
+        <li><span class="pill pill-new">New</span> Optional Face ID / Touch ID step-up before revealing or copying any password.</li>
+        <li><span class="pill pill-new">New</span> Passwords copied to the clipboard are automatically cleared after 60 seconds.</li>
+        <li><span class="pill pill-new">New</span> No third-party SDKs, analytics, or tracking — your data never leaves your device.</li>
+        <li><span class="pill pill-new">New</span> Breach check — check any password against the Have I Been Pwned database using the k-Anonymity model (only first 5 chars of the SHA-1 hash are sent).</li>
+      </ul>
+    </div>
+
+  </section>
+
+</div>
+
+<footer class="subpage-foot">
+  <span>© 2026 RookPass</span>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+</footer>
+
+</body>
+</html>

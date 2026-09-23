@@ -31,7 +31,7 @@
   <section class="compare-hero">
     <div class="eyebrow">Feature comparison</div>
     <h1>Clear tiers. Same security model.</h1>
-    <p class="compare-meta">RookPass Free includes the full personal password manager, including themes and in-app language choice. RookPass Pro adds advanced controls for users who want more structure, scale, or operational features. Eligible new subscribers can start Pro with a 7-day free trial.</p>
+    <p class="compare-meta">Start with unlimited passwords, AutoFill, passkeys, and built-in 2FA for free. Choose Pro for encrypted sharing, separate vaults, and advanced controls. No subscription or trial is required to use Free.</p>
 
     <div class="compare-highlights">
       <article class="compare-card">
@@ -41,13 +41,13 @@
       </article>
       <article class="compare-card">
         <div class="card-kicker">Pro</div>
-        <h3>Additional operational tools.</h3>
-        <p>Multiple vaults, SSH keys, bulk actions, deeper history, and encrypted sharing extend the product when you need more control.</p>
+        <h3>Share, separate, and manage more.</h3>
+        <p>Share an expiring encrypted link, separate personal and work vaults, or update many entries at once. Pro adds these tools without changing the free essentials.</p>
       </article>
       <article class="compare-card">
         <div class="card-kicker">Security</div>
         <h3>No separate privacy tier.</h3>
-        <p>Both plans share the same local-first, zero-knowledge security architecture.</p>
+        <p>Both plans encrypt your vault on your device. Biometric unlock, encrypted backups, and optional encrypted iCloud sync are included in Free.</p>
       </article>
     </div>
   </section>
@@ -56,9 +56,9 @@
     <table class="compare-table">
       <thead>
         <tr>
-          <th>Feature</th>
-          <th>Free</th>
-          <th>Pro</th>
+          <th scope="col">Feature</th>
+          <th scope="col">Free</th>
+          <th scope="col">Pro</th>
         </tr>
       </thead>
       <tbody>
@@ -92,7 +92,7 @@
         <tr><td class="feature-name">Password expiry reminders</td><td class="no">No</td><td class="yes">Yes</td></tr>
 
         <tr class="group-row"><td colspan="3">Sync and Data</td></tr>
-        <tr><td class="feature-name">Encrypted iCloud sync</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><td class="feature-name">Optional encrypted iCloud sync</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
         <tr><td class="feature-name">Import from major password managers</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
         <tr><td class="feature-name">Export to encrypted .rook archive or CSV</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
 
@@ -108,11 +108,23 @@
         <tr>
           <td>Price</td>
           <td>Free</td>
-          <td>$9.99 / year + 7-day free trial</td>
+          <td>Annual subscription<br>Local price shown in the app</td>
         </tr>
       </tfoot>
     </table>
   </section>
+
+  <article aria-labelledby="questions">
+    <h2 id="questions">Before you choose</h2>
+    <h2>Do I need to start a trial?</h2>
+    <p>No. Unlimited passwords, AutoFill, built-in 2FA, and the other Free features above work without a subscription. Pro offers a 7-day free trial to eligible new subscribers. The app and Apple purchase sheet show your local annual price and eligibility before you confirm. Pro renews automatically unless cancelled; see the <a href="terms.html">subscription terms</a>.</p>
+    <h2>Can I try importing before paying?</h2>
+    <p>Yes. Import and encrypted backup export are free. Follow the <a href="switching.html">switching guide</a>, verify important entries and a real AutoFill sign-in, and keep your old manager available while you check the result.</p>
+    <h2>Will all my data transfer?</h2>
+    <p>That depends on the source and export format. CSV does not transfer passkeys, and exports may omit attachments or custom fields. Review passwords, notes, and verification codes separately. The <a href="switching.html#formats">format guide</a> explains the starting points and limits.</p>
+    <h2>Do I need iCloud or an account?</h2>
+    <p>No RookPass account is required. Your vault works locally; encrypted iCloud sync is optional. Network features such as breach checks and Rook Send are explained in the <a href="privacy.html">privacy policy</a>.</p>
+  </article>
 
   <section class="cta-band">
     <div>
@@ -121,7 +133,7 @@
     </div>
     <div class="hero-actions">
       <a class="button" href="https://apps.apple.com/app/id6764725913" rel="noopener">Download RookPass</a>
-      <a class="button-ghost" href="privacy.html">Privacy details</a>
+      <a class="button-ghost" href="switching.html">Switching guide</a>
     </div>
   </section>
 </main>
@@ -131,6 +143,7 @@
   <nav class="links" aria-label="Footer">
     <a href="privacy.html">Privacy</a>
     <a href="terms.html">Terms</a>
+    <a href="switching.html">Switching guide</a>
     <a href="mailto:support@rookpass.com">Support</a>
   </nav>
 </footer>

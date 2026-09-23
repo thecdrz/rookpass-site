@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Move passwords to RookPass: supported export formats, import checks, AutoFill, backups, and cleanup.">
+<meta name="theme-color" content="#14151a">
+<meta name="color-scheme" content="dark">
+<title>Switching guide — RookPass</title>
+<link rel="icon" type="image/png" href="assets/appicon.png?v=20260518c">
+<link rel="stylesheet" href="assets/style.css?v=site-shell-8">
+</head>
+<body>
+
+<nav class="subpage-nav">
+  <a class="brand" href="index.html" aria-label="RookPass home">
+    <img src="assets/appicon.png?v=20260518c" alt="" aria-hidden="true">
+    <span>RookPass</span>
+  </a>
+  <div class="landing-nav-links">
+    <a href="features.html">Features</a>
+    <a href="changelog.html">What&#x2019;s New</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:support@rookpass.com">Support</a>
+    <a class="nav-btn" href="https://apps.apple.com/app/id6764725913" rel="noopener">Download</a>
+  </div>
+</nav>
+
+<main class="container">
+  <header class="page-header">
+    <div class="label">Getting started</div>
+    <h1>Move your passwords, at your pace.</h1>
+    <div class="meta">Import and encrypted backups are free. No Pro trial required.</div>
+  </header>
+  <article>
+    <div class="callout"><strong>Keep your old manager available.</strong> Check the imported data, a real sign-in, and your recovery plan before removing anything from your previous vault.</div>
+
+    <h2>1. Prepare a vault and a private place for the export</h2>
+    <p>Create or unlock your RookPass vault on your iPhone. Keep its master password somewhere you can recover safely. If you already have entries, make an encrypted RookPass backup before importing more.</p>
+    <p>CSV, unencrypted JSON, and XML exports contain readable secrets. Save them on a trusted device, avoid shared or automatically synced folders, and do not email them or upload them to this website. RookPass imports files inside the app; this page has no upload form.</p>
+
+    <h2 id="formats">2. Choose the right export format</h2>
+    <p>Use the source app’s export function, then move the file securely to your iPhone if needed. Menu names vary by version. These are file-import routes; do not assume direct app-to-app transfer is supported.</p>
+
+    <h2>Apple Passwords → CSV</h2>
+    <p>Use Apple’s <a href="https://support.apple.com/en-euro/guide/iphone/iphf28f2e93e/ios">password export instructions</a> for your iOS version and select the resulting CSV file in RookPass. If the export is packaged in a ZIP, extract it first. Check which passwords Apple includes, especially shared items. This CSV route does not move passkeys.</p>
+
+    <h2>1Password → CSV for logins</h2>
+    <p>In the 1Password desktop app, export the account in CSV format using <a href="https://support.1password.com/export/">1Password’s export guide</a>. Choose that CSV in RookPass. This route exports Login and Password items with a limited set of fields; it is not a complete migration of every item type. Keep custom fields, attachments, and passkeys available in the original vault while you handle them separately. Do not select a .1pux archive as a CSV file.</p>
+
+    <h2>Bitwarden → unencrypted JSON</h2>
+    <p>Follow <a href="https://bitwarden.com/help/export-your-data/">Bitwarden’s export guide</a> and choose an unencrypted .json export for this import route. RookPass reads Bitwarden JSON; it cannot open a Bitwarden encrypted export. Treat the temporary JSON as readable passwords and check notes, URLs, and verification codes after import.</p>
+
+    <h2>KeePass → KeePass 2 XML</h2>
+    <p>Export your database as plaintext KeePass 2 XML, then select the .xml file in RookPass. An encrypted .kdbx database is not the same format and cannot be imported directly. KeePass versions use different formats; consult <a href="https://keepass.info/help/base/importexport.html">KeePass’s format documentation</a>. Verify folders, notes, and any custom fields you rely on.</p>
+
+    <h2>Chrome or LastPass → CSV</h2>
+    <p>Use the source’s password export function to create a CSV. Keep its original header row and choose the file in RookPass. Avoid opening and resaving the export in a spreadsheet, which can change values. Check that usernames, passwords, and website addresses are mapped correctly in the preview.</p>
+
+    <h2>3. Preview, import, and check the saved entries</h2>
+    <p>Open the Vault tab, open its menu, and choose Import. Select the file, review the preview and selected entries, then confirm the import. If the format is not recognized or important entries are missing, stop and check the export format instead of deleting or altering the original vault.</p>
+    <ul>
+      <li>Check several important accounts, including a long password, a note, and any account with a verification code.</li>
+      <li>Compare titles, usernames, website addresses, and notes with the original. An import count alone does not prove every field transferred.</li>
+      <li>Check TOTP codes against the original authenticator. Keep recovery codes available until sign-in works.</li>
+      <li>CSV does not transfer passkeys. Keep the old passkeys working; where needed, add a new passkey through each website’s security settings and test it before removing the old one.</li>
+    </ul>
+
+    <h2>4. Try AutoFill on a real account</h2>
+    <p>Use RookPass’s AutoFill setup guide to enable it in iOS Settings. Open a familiar website or app, choose a saved login from the system password sheet, and confirm you can sign in. Filling a field is only the first step; verify the website accepts the login and any second factor.</p>
+    <p>If your daily routine depends on other devices or browser extensions, verify those workflows too before switching your only copy of the vault.</p>
+
+    <h2>5. Keep a recoverable backup, then clean up</h2>
+    <p>Export an encrypted .rook backup from RookPass. Store it safely with a way to recover the password used to create it. Verify that the backup can be opened using a spare device or a separate test vault where available; do not erase your working vault to test recovery. A backup file you have never checked is not proof that recovery works.</p>
+    <p>After verifying the import, remove temporary plaintext exports and extracted copies from both devices, Downloads, Files, and any synced locations. Check Trash or Recently Deleted too. Deleting a file does not guarantee removal from existing cloud backups. Keep the original manager and its recovery options available until you are confident the switch is complete.</p>
+
+    <h2>Need help?</h2>
+    <p>Email <a href="mailto:support@rookpass.com">support@rookpass.com</a> with the source app, export format, RookPass version, and a description of the problem. Do not send passwords, recovery codes, or vault exports. You can also <a href="features.html">compare Free and Pro</a> or read the <a href="privacy.html">privacy policy</a>.</p>
+  </article>
+</main>
+
+<footer class="landing-foot">
+  <span>© 2026 RookPass</span>
+  <nav class="links" aria-label="Footer">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a class="active" href="switching.html" aria-current="page">Switching guide</a>
+    <a href="mailto:support@rookpass.com">Support</a>
+  </nav>
+</footer>
+
+</body>
+</html>

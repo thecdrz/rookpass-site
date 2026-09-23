@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="RookPass Privacy Policy — zero-knowledge password manager. All data stays on your device.">
+<meta name="description" content="RookPass Privacy Policy — encrypted vault storage, optional network features, and your data choices.">
 <meta name="theme-color" content="#14151a">
 <meta name="color-scheme" content="dark">
 <title>Privacy — RookPass</title>
@@ -32,72 +32,43 @@
   <header class="page-header">
     <div class="label">Legal</div>
     <h1>Privacy Policy</h1>
-    <div class="meta">Effective April 29, 2026 · Last updated April 29, 2026</div>
+    <div class="meta">Effective April 29, 2026 · Last updated September 23, 2026</div>
   </header>
 
   <article>
 
   <div class="callout">
-    <strong>The short version:</strong> RookPass collects nothing about you. All your passwords stay on your device. We have zero ability to read your vault.
+    <strong>Your vault stays under your control.</strong> RookPass encrypts vault contents on your device. Optional sync, sharing, and breach checks use the network as described below. No RookPass account is required.
   </div>
 
-  <h2>Overview</h2>
-  <p>RookPass is a password manager designed around a single principle: <strong>your data belongs to you, not us</strong>. The app stores all vault data locally on your device using AES-256-GCM encryption with Argon2id key derivation. We do not operate any servers that receive, store, or process your passwords or personal information.</p>
+  <h2>Vault storage and unlocking</h2>
+  <p>Your vault is stored as an encrypted file using AES-256-GCM. A key is derived from your master password using Argon2id and a random salt. Biometric unlock uses iOS Keychain access controls. Your master password is not stored in the Secure Enclave. The app decrypts data locally when you unlock or use a credential.</p>
+  <p>Imports are processed on your device. CSV and JSON exports can contain readable secrets. Exported files, copied text, and links you share are outside the encrypted vault's storage protections.</p>
 
-  <h2>Data we collect</h2>
-  <p><strong>We collect nothing.</strong> RookPass has no analytics, no crash reporting service, no telemetry, and no usage tracking. Here is a complete picture of where your data lives:</p>
+  <h2>Optional iCloud sync</h2>
+  <p>Sync is off by default. If enabled, RookPass sends an encrypted vault blob to your private CloudKit database through your Apple Account. This is not a user-visible iCloud Drive file. RookPass does not send the master password or vault decryption key with the blob. Apple processes the account and connection information needed to provide iCloud.</p>
 
-  <table>
-    <thead>
-      <tr><th>Data</th><th>Where it's stored</th><th>Who can access it</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Vault contents</td>
-        <td>Encrypted file on your device</td>
-        <td>Only you, via your master password</td>
-      </tr>
-      <tr>
-        <td>Master password</td>
-        <td>Never stored — used only to derive the vault key</td>
-        <td>Only you</td>
-      </tr>
-      <tr>
-        <td>Vault encryption key</td>
-        <td>iOS Keychain, protected by Secure Enclave</td>
-        <td>Only you</td>
-      </tr>
-      <tr>
-        <td>iCloud backup (optional)</td>
-        <td>iCloud Drive — encrypted ciphertext only</td>
-        <td>Only you (Apple cannot read it)</td>
-      </tr>
-      <tr>
-        <td>PIN unlock</td>
-        <td>Derived key in iOS Keychain</td>
-        <td>Only you</td>
-      </tr>
-    </tbody>
-  </table>
+  <h2>Breach checks</h2>
+  <p>Password checks contact <a href="https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange">Have I Been Pwned</a> using the first five characters of a SHA-1 password hash. The complete password and complete hash are not sent. The service receives connection information when handling a request.</p>
 
-  <h2>Encryption</h2>
-  <p>All vault data is encrypted on-device before being written to storage:</p>
-  <ul>
-    <li><strong>Algorithm:</strong> AES-256-GCM (authenticated encryption with integrity verification).</li>
-    <li><strong>Key derivation:</strong> Argon2id (t=3, m=64 MiB, p=2) with a random per-vault salt — exceeds OWASP 2023 minimum parameters.</li>
-    <li><strong>Nonce:</strong> A unique random nonce per encryption operation, ensuring no two ciphertexts are alike.</li>
-    <li><strong>Biometric key storage:</strong> iOS Secure Enclave via the Keychain, protected by your device's biometric hardware.</li>
-  </ul>
-  <p>Your master password is cleared from memory immediately after the vault key is derived. It is never written to disk, logged, or transmitted.</p>
+  <h2>Secure sharing</h2>
+  <p>Rook Send encrypts selected content on your device and uploads ciphertext to a Cloudflare-hosted relay. The receiver page decrypts the share using key material in the link fragment. Anyone who receives a usable share link may access its content subject to the share's controls. Sharing is separate from local vault storage.</p>
 
-  <h2>iCloud sync</h2>
-  <p>iCloud sync is <strong>off by default</strong>. If you enable it in Settings, only the encrypted vault file (ciphertext) is uploaded to your personal iCloud Drive. The master password and encryption keys are never uploaded. Apple receives only an opaque blob it cannot decrypt.</p>
+  <h2>Purchases and diagnostics</h2>
+  <p>Apple handles subscription purchases and provides transaction information used to verify Pro access. RookPass does not receive your payment-card details. The app uses local diagnostics and Apple's platform diagnostics; it does not include a third-party advertising SDK.</p>
 
-  <h2>Third-party services</h2>
-  <p>RookPass does not use any third-party SDKs, analytics platforms, advertising networks, or crash reporting services. The only network requests the app can make are to iCloud (when sync is enabled, via Apple's CloudKit APIs) and to <a href="https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange">Have I Been Pwned's password API</a> (k-anonymity model — only the first 5 characters of a SHA-1 hash are sent, never the password itself).</p>
+  <h2>Optional usage analytics</h2>
+  <p><strong>The current App Store release, version 3.6, does not upload product analytics.</strong> We are preparing an optional usage-analytics feature for a future release. Where offered, it is off by default and requires your explicit choice in Usage Analytics before any events are collected. Existing users are not opted in automatically. Declining does not restrict your vault or free features.</p>
+  <p>If you opt in, events describe setup, imports, AutoFill handoff observations, paywall visits, and purchase outcomes. Each event includes a random event identifier, a random installation identifier, a new/existing-user label, days since consent, and fixed event and screen categories. The server adds a receipt day. The installation identifier links events over time, so these records are pseudonymous, not anonymous. They are used to understand and improve RookPass.</p>
+  <p>These events exclude passwords, vault contents, websites, item counts, email addresses, advertising identifiers, transaction identifiers, and free-text errors. An AutoFill observation means a credential was handed to iOS, not that a website accepted it. Analytics are not sold, used for targeted advertising, or combined with other companies' data for tracking.</p>
+  <p>The collector is operated for RookPass on Cloudflare Workers and KV, at <code>rook-product-analytics.rookapp.workers.dev</code>. It stores received event records with a 30-day expiry and has no public read endpoint. Worker request logging is disabled. The app queues up to 64 unsent events and excludes events older than 30 days from uploads; expired queued records are cleared during later app activity. Turning analytics off clears the unsent queue and stops future collection. An upload already delivered cannot be recalled. Resetting the identifier clears unsent events and creates a new identifier; previously received events expire automatically rather than being immediately deleted.</p>
 
-  <h2>Children</h2>
-  <p>RookPass does not knowingly collect information from anyone, including children under 13. Because we collect no data at all, the app is safe for use by anyone.</p>
+  <h2>Network providers and the website</h2>
+  <p>Providers process connection information, such as IP addresses and request metadata, to deliver and protect their services. The analytics collector does not put IP addresses or request headers in event storage. Its 30-day event expiry is not a promise about all provider operational or security records. Cloudflare describes its processing and retention in its <a href="https://www.cloudflare.com/privacypolicy/">privacy policy</a>. Services may process data outside your country.</p>
+  <p>This website is hosted on GitHub Pages. GitHub processes website requests under its <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a>. Opening an external link connects you to that provider.</p>
+
+  <h2>Contacting us</h2>
+  <p>If you email support, we receive the message and contact details you choose to send. Do not send passwords, recovery codes, or vault exports. You can review a support email before sending it. Contact us at the address below with privacy or data-control questions.</p>
 
   <h2>Changes to this policy</h2>
   <p>If we make material changes to this policy, we will update the effective date above and post the updated version here. Any substantive change will also be noted on the <a href="changelog.html">What&rsquo;s New</a> page.</p>

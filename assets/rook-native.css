@@ -5,3 +5,10 @@
 @media(max-width:800px){.site-header{flex-wrap:wrap}.site-header nav{justify-content:flex-start;width:100%;gap:16px}.site-header nav a:not(.button){display:inline}.site-header nav .button{margin-left:auto}.hero h1{font-size:clamp(38px,10vw,48px)}.brand{font-size:23px}.phone{border-radius:25px}}
 
 .stories h2{font-size:clamp(34px,4vw,52px);line-height:1.07;font-weight:650;letter-spacing:-2px;margin:0 0 24px}.sharing{background:#213f3c;color:#fff9ef}.sharing .eyebrow,.sharing a{color:#b4d8cb}.sharing p:not(.eyebrow){color:#e4e9e1}.plans article.pro-plan{border-color:#bacfc0;background:#e4e8dc}
+
+/* Paired hero screens show the same vault in light and graphite themes. */
+.phone-pair{position:relative;width:min(100%,430px);aspect-ratio:.72;margin:auto}
+.phone-pair .phone{position:absolute;width:60%;margin:0}
+.phone-pair .phone-dark{left:0;top:0;z-index:1;border-color:#4a504f;box-shadow:0 24px 54px #1523212b}
+.phone-pair .phone-light{right:0;bottom:0;z-index:2}
+.site-header nav a{white-space:nowrap}

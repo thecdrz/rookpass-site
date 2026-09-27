@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Rook Send — view a securely shared credential from RookPass.">
-<meta name="theme-color" content="#14151a">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#f5efe3">
+<meta name="color-scheme" content="light">
 <meta http-equiv="Content-Security-Policy"
       content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://rook-relay.rookapp.workers.dev; img-src 'self' data:; font-src 'self';">
 <title>Rook Send — RookPass</title>
 <style>
 /* ── Design tokens (matches RookPass website palette) ─────────────────── */
 :root {
-  --bg:          #14151a;
+  --bg:          #f5efe3;
   --bg-2:        #1a1c22;
   --card:        #1c1e25;
   --card-2:      #23262e;
@@ -275,13 +275,17 @@ body {
     justify-content: flex-start;
   }
 }
+
+:root{--bg:#f5efe3;--bg-2:#eee8dc;--card:#fffcf5;--card-2:#e7ebe2;--border:#d4dbd2;--text:#213337;--text-muted:#52625f;--text-faint:#626e69;--accent:#26615c;--accent-2:#1c4e49;--green:#22634a;--orange:#885319;--red:#a63834;color-scheme:light}
+body{background:var(--bg)}.nav,.card,.promo{background:var(--card);box-shadow:0 8px 30px #2133370a}.nav-brand img{box-shadow:none}.btn{background:var(--accent);color:#fff}.btn:hover{background:var(--accent-2)}.icon-circle{background:#e1e8de}.promo{border-color:var(--border)}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:4px}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+.promo-card{background:#e4e8dc;border-color:#bacfc0}.promo-icon{box-shadow:none}.entry-icon{background:#e1e8de}
 </style>
 </head>
 <body>
 
 <nav class="nav">
   <a href="index.html" class="nav-brand">
-    <img src="assets/appicon.png?v=20260518c" alt="RookPass icon">
+    <img src="assets/appicon.png?v=flat-teal-1" alt="RookPass icon">
     <span class="brand">RookPass</span>
   </a>
   <div class="nav-links">
@@ -366,7 +370,7 @@ body {
 <!-- Promo — revealed by JS after successful decrypt -->
 <div id="s-promo" class="promo-card" style="display:none">
   <div class="promo-row">
-    <img src="assets/appicon.png?v=20260518c" alt="RookPass icon" class="promo-icon">
+    <img src="assets/appicon.png?v=flat-teal-1" alt="RookPass icon" class="promo-icon">
     <div>
       <div class="promo-heading">Your friend uses RookPass</div>
       <div class="promo-body">Free, no account needed. Zero-knowledge encryption keeps your vault on your device.</div>
